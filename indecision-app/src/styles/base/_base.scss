@@ -7,3 +7,11 @@ body {
     font-size: $m-size;
     background: $body-background;
 }
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
