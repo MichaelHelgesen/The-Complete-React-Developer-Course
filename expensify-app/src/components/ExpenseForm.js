@@ -13,7 +13,7 @@ export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);
 
-        state = {
+        this.state = {
             description: props.expense ? props.expense.description : "",
             note: props.expense ? props.expense.note : "",
             amount:  props.expense ? (props.expense.amount / 100).toString() : "",
