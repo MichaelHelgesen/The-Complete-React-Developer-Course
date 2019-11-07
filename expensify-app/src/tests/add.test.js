@@ -9,10 +9,10 @@ test("should add two numbers", () => {
 
 test("Should return greeting with name", () => {
     const result = generateGreeting("Mike");
-    expect(result).toBe("Hello Mikfe");
+    expect(result).toBe("Hello Mike");
 });
 
 test("should generate greeting for no name", () => {
     const result = generateGreeting();
     expect(result).toBe("Hello Anonymous")
-})
+});
