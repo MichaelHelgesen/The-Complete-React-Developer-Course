@@ -13,7 +13,7 @@ export default (state = expensesReducerDefaultState, action) => {
             ];
         case "REMOVE_EXPENSE":
             return state.filter(function (item){
-                return item.id != action.expense.id
+                return item.id != action.id
             });
         case "EDIT_EXPENSE":
             return state.map((expense) => {
