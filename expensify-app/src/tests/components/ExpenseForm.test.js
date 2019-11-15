@@ -79,4 +79,4 @@ test("should set new date on date change", () => {
     const wrapper = shallow(<ExpenseForm />);
     wrapper.find("SingleDatePicker").prop("onDateChange")(now);
     expect(wrapper.state("createdAt")).toEqual(now);
-})
+});
