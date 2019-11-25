@@ -15,6 +15,23 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-firebase.database().ref().set({
-    name: "Michael Helgesen"
+const database = firebase.database();
+
+database.ref().set({
+    name: "Michael Helgesen",
+    age: 39,
+    isSingle: false,
+    location: {
+        city: "Halden",
+        countr: "Norway"
+    }
+});
+
+// database.ref().set("This is my data");
+
+database.ref("age").set(27);
+database.ref("location/city").set("Fredrikstad");
+database.ref("attributes").set({
+    height: 73,
+    weight: 150
 });
