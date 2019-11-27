@@ -17,14 +17,41 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref().on("value", (snapshot) =>{
-    const obj = snapshot.val()
-    console.log(`${obj.name} is a ${obj.job.title} at ${obj.job.company}`);
+database.ref("expenses").push({
+    description: "desc",
+    note: "note",
+    amount: 4,
+    createdAt: ""
 });
 
-database.ref().update({
-    name: "Petter"
-})
+database.ref("expenses").push({
+    description: "desc2",
+    note: "note2",
+    amount: 5,
+    createdAt: ""
+});
+
+database.ref("expenses").push({
+    description: "desc3",
+    note: "note3",
+    amount: 6,
+    createdAt: ""
+});
+
+
+
+
+
+// database.ref("notes/-LuivuxkEmAmxdJf1WXi").remove()
+
+// database.ref().on("value", (snapshot) =>{
+//     const obj = snapshot.val()
+//     console.log(`${obj.name} is a ${obj.job.title} at ${obj.job.company}`);
+// });
+
+// database.ref().update({
+//     name: "Petter"
+// })
 
 // database.ref("location/city")
 //     .once("value")
