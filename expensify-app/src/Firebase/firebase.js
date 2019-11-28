@@ -17,80 +17,111 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref("expenses").push({
-    description: "desc",
-    note: "note",
-    amount: 4,
-    createdAt: ""
-});
+export {firebase, database as default};
 
-database.ref("expenses").push({
-    description: "desc2",
-    note: "note2",
-    amount: 5,
-    createdAt: ""
-});
-
-database.ref("expenses").push({
-    description: "desc3",
-    note: "note3",
-    amount: 6,
-    createdAt: ""
-});
-
-
-
-
-
-// database.ref("notes/-LuivuxkEmAmxdJf1WXi").remove()
-
-// database.ref().on("value", (snapshot) =>{
-//     const obj = snapshot.val()
-//     console.log(`${obj.name} is a ${obj.job.title} at ${obj.job.company}`);
-// });
-
-// database.ref().update({
-//     name: "Petter"
+// //child_removec
+// database.ref("expenses").on("child_removed", (snapshot) => {
+//     console.log(snapshot.key, snapshot.val());
 // })
 
-// database.ref("location/city")
-//     .once("value")
-//     .then((snapshot) => {
-//         const val = snapshot.val();
-//         console.log(val);
-//     }).catch((e) => {
-//         console.log("Error fetching data", e)
-//     })
-
-
-// database.ref().set({
-//     name: "Michael Helgesen",
-//     age: 39,
-//     stressLevel: 6,
-//     job: {
-//         title: "Software developer",
-//         company: "Google"
-//     },
-//     location: {
-//         city: "Halden",
-//         countr: "Norway"
-//     }
-// }).then(() => {
-//     console.log("Data is saved");
-// }).catch((e) => {
-//     console.log("This failed. ", e)
+// //child_changed
+// database.ref("expenses").on("child_changed", (snapshot) => {
+//     console.log(snapshot.key, snapshot.val());
 // });
 
-// database.ref().update({
-//     stressLevel: 9,
-//     "job/company": "Amazon",
-//     "location/city": "Oslo"
+// // child_added
+// database.ref("expenses").on("child_added", (snapshot) => {
+//     console.log(snapshot.key, snapshot.val());
 // });
 
-// database.ref()
-//     .remove()
-//     .then(() => {
-//         console.log("Data was removed")
-//     }).catch((e) => {
-//         console.log("Did not remove data", e);
-//     });
+// // database.ref("expenses")
+// //     .once("value")
+// //     .then((snapshot) => {
+// //         const expenses = [];
+
+// //         snapshot.forEach((childSnapshot) => {
+// //             expenses.push({
+// //                 id: childSnapshot.key,
+// //                 ...childSnapshot.val()
+// //             })
+// //         })
+
+// //         //console.log(expenses);
+// //     });
+
+// database.ref("expenses").push({
+//     description: "desc",
+//     note: "note",
+//     amount: 4,
+//     createdAt: ""
+// });
+
+
+
+// // var starCountRef = firebase.database().ref('expenses');
+// // starCountRef.on('value', function(snapshot) {
+// //   const expenses = [];
+// //   snapshot.forEach((childSnapshot) => {
+// //       expenses.push({
+// //           id: childSnapshot.key,
+// //           ...childSnapshot.val()
+// //       })
+      
+// //   })
+// //   console.log(expenses);
+// // });
+
+
+
+// // database.ref("notes/-LuivuxkEmAmxdJf1WXi").remove()
+
+// // database.ref().on("value", (snapshot) =>{
+// //     const obj = snapshot.val()
+// //     console.log(`${obj.name} is a ${obj.job.title} at ${obj.job.company}`);
+// // });
+
+// // database.ref().update({
+// //     name: "Petter"
+// // })
+
+// // database.ref("location/city")
+// //     .once("value")
+// //     .then((snapshot) => {
+// //         const val = snapshot.val();
+// //         console.log(val);
+// //     }).catch((e) => {
+// //         console.log("Error fetching data", e)
+// //     })
+
+
+// // database.ref().set({
+// //     name: "Michael Helgesen",
+// //     age: 39,
+// //     stressLevel: 6,
+// //     job: {
+// //         title: "Software developer",
+// //         company: "Google"
+// //     },
+// //     location: {
+// //         city: "Halden",
+// //         countr: "Norway"
+// //     }
+// // }).then(() => {
+// //     console.log("Data is saved");
+// // }).catch((e) => {
+// //     console.log("This failed. ", e)
+// // });
+
+// // database.ref().update({
+// //     stressLevel: 9,
+// //     "job/company": "Amazon",
+// //     "location/city": "Oslo"
+// // });
+
+// // database.ref()
+// //     .remove()
+// //     .then(() => {
+// //         console.log("Data was removed")
+// //     }).catch((e) => {
+// //         console.log("Did not remove data", e);
+// //     });
