@@ -37,3 +37,4 @@ export const editExpense = (id, updates) => ({
     id,
     updates 
 });
+
