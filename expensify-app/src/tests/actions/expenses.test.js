@@ -68,7 +68,8 @@ test("should add expense with defaults to database and store", (done) => {
         amount: 0,
         note: "",
         createdAt: 0
-    }
+    };
+
     store.dispatch(startAddExpense({})).then(() => {
         const action = store.getActions();
         expect(action[0]).toEqual({
@@ -89,12 +90,12 @@ test("should add expense with defaults to database and store", (done) => {
 //     const action = addExpense();
 //     expect(action).toEqual({
 //         type: "ADD_EXPENSE",
-//     expense: {
-//         id: expect.any(String),
-//         description: "",
-//         note: "",
-//         amount: 0,
-//         createdAt: 0     
-//     }
+//         expense: {
+//             id: expect.any(String),
+//             description: "",
+//             note: "",
+//             amount: 0,
+//             createdAt: 0     
+//         }
 //     })
 // })
