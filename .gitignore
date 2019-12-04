@@ -1,0 +1,5 @@
+expensify-app/node_modules/
+expensify-app/public/dist/
+expensify-app/.env.test
+expensify-app/.env.development
+expensify-app/.env.developement
