@@ -18,5 +18,8 @@ exports[`should render Header correctly 1`] = `
   >
     Create Expense
   </[object Object]>
+  <button>
+    Logout
+  </button>
 </header>
 `;
