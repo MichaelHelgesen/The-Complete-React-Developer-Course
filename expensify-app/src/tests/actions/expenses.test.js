@@ -4,10 +4,12 @@ import {
     startAddExpense,
     addExpense,
     editExpense,
+    startEditExpense,
     removeExpense,
+    startRemoveExpense,
     setExpenses,
-    startSetExpenses,
-    startRemoveExpense} from "../../actions/expenses";
+    startSetExpenses
+} from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
 
@@ -21,15 +23,13 @@ beforeEach((done) => {
     database.ref("expenses").set(expensesData).then(() => done());
 });
 
-test ("Should setup remove expense action object", () => {
-    const action = removeExpense({id: "abc123"});
+test('should setup remove expense action object', () => {
+    const action = removeExpense({ id: '123abc' });
     expect(action).toEqual({
         type: "REMOVE_EXPENSE",
-        expense: {
-            id: "abc123"
-        }
+        id: "123abc"
     });
-});
+  });
 
 test("should remove expense from firebase", (done) => {
     const store = createMockStore({});
@@ -38,14 +38,16 @@ test("should remove expense from firebase", (done) => {
         const actions = store.getActions();
         expect(actions[0]).toEqual({
             type: "REMOVE_EXPENSE",
-            id
+                id
         });
         return database.ref(`expenses/${id}`).once("value");
     }).then((snapshot) => {
         expect(snapshot.val()).toBeFalsy();
         done();
-    })
-})
+    });
+});
+
+
 
 test ("Should setup edit expense action object", () => {
     const action = editExpense("123", {note: "New note value"});
@@ -55,9 +57,27 @@ test ("Should setup edit expense action object", () => {
         updates: {
             note: "New note value"
         }
-        
+    });
+});
+
+test("should edit expense from firebase", () => {
+    const store = createMockStore({});
+    const id = expenses[0].id;
+    const updates = { amount: 21045};
+    store.dispatch(startEditExpense(id, updates)).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: "EDIT_EXPENSE",
+            id,
+            updates
+        });
+        return database.ref(`expenses${id}`).once("value");
+    }).then((snapshot) => {
+        expect(snapshot.val().amount).toBe(updates.amount);
+        done();
     })
 })
+
 
 test("should setup add expense action object with provided values", () => {
     const action = addExpense(expenses[2]);
