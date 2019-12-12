@@ -1,0 +1,12 @@
+.box-layout {
+    background: url("/images/bg.jpg");
+    background-size: cover;
+    display: flex;
+    height: 10vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+.box-layout__box {
+    background: fade-out(white, .15);
+}
