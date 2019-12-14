@@ -1,54 +1,58 @@
-import { addExpense, editExpense, removeExpense } from '../../actions/expenses';
+import moment from 'moment';
+import selectExpenses from '../../selectors/expenses';
+import expenses from '../fixtures/expenses';
 
-test('should setup remove expense action object', () => {
-  const action = removeExpense({ id: '123abc' });
-  expect(action).toEqual({
-    type: 'REMOVE_EXPENSE',
-    expense: {
-        id: '123abc'
-    }
-  });
+test('should filter by text value', () => {
+  const filters = {
+    text: 'e',
+    sortBy: 'date',
+    startDate: undefined,
+    endDate: undefined
+  };
+  const result = selectExpenses(expenses, filters);
+  expect(result).toEqual([expenses[2], expenses[1]]);
 });
 
-test('should setup edit expense action object', () => {
-  const action = editExpense('123abc', { note: 'New note value' });
-  expect(action).toEqual({
-    type: 'EDIT_EXPENSE',
-    id: '123abc',
-    updates: {
-      note: 'New note value'
-    }
-  });
+test('should filter by startDate', () => {
+  const filters = {
+    text: '',
+    sortBy: 'date',
+    startDate: moment(0),
+    endDate: undefined
+  };
+  const result = selectExpenses(expenses, filters);
+  expect(result).toEqual([expenses[2], expenses[0]]);
 });
 
-// test('should setup add expense action object with provided values', () => {
-//   const expenseData = {
-//     description: 'Rent',
-//     amount: 109500,
-//     createdAt: 1000,
-//     note: 'This was last months rent'
-//   };
-//   const action = addExpense(expenseData);
-//   expect(action).toEqual({
-//     type: 'ADD_EXPENSE',
-//     expense: {
-//       ...expenseData,
-//       id: expect.any(String)
-//     }
-//   });
-// });
+test('should filter by endDate', () => {
+  const filters = {
+    text: '',
+    sortBy: 'date',
+    startDate: undefined,
+    endDate: moment(0).add(2, 'days')
+  };
+  const result = selectExpenses(expenses, filters);
+  expect(result).toEqual([expenses[0], expenses[1]]);
+});
 
+test('should sort by date', () => {
+  const filters = {
+    text: '',
+    sortBy: 'date',
+    startDate: undefined,
+    endDate: undefined
+  };
+  const result = selectExpenses(expenses, filters);
+  expect(result).toEqual([expenses[2], expenses[0], expenses[1]]);
+});
 
-// test('should setup add expense action object with default values', () => {
-//   const action = addExpense();
-//   expect(action).toEqual({
-//     type: 'ADD_EXPENSE',
-//     expense: {
-//       id: expect.any(String),
-//       description: '',
-//       note: '',
-//       amount: 0,
-//       createdAt: 0
-//     }
-//   });
-// });
+test('should sort by amount', () => {
+  const filters = {
+    text: '',
+    sortBy: 'amount',
+    startDate: undefined,
+    endDate: undefined
+  };
+  const result = selectExpenses(expenses, filters);
+  expect(result).toEqual([expenses[1], expenses[2], expenses[0]]);
+});
