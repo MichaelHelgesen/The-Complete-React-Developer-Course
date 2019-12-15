@@ -26,13 +26,13 @@ export class ExpenseListFilters extends React.Component {
   };
   render() {
     return (
-      // <div>
-      //           <input type="text" value={this.props.filters.text} onChange={this.onTextChange} />
-      //           <select value={this.props.filters.sortBy} onChange={this.onSortChange}>
-      //               <option value="date">Date</option>
-      //               <option value="amount">Amount</option>
-      //           </select>
-      //           <DateRangePicker 
+       <div>
+                 <input type="text" value={this.props.filters.text} onChange={this.onTextChange} />
+                 <select value={this.props.filters.sortBy} onChange={this.onSortChange}>
+                     <option value="date">Date</option>
+                     <option value="amount">Amount</option>
+                 </select>
+               </div> // <DateRangePicker 
       //           startDateId="MyDatePickerStart"
       //           endDateId="MyDatePickerEnd"    
       //           startDate = {this.props.filters.startDate}
@@ -44,8 +44,8 @@ export class ExpenseListFilters extends React.Component {
       //               isOutsideRange={() => false}
       //               showClearDates={true}
       //           />
-      //       </div>
-      <p>df</p>
+             
+      
     );
   }
 };
