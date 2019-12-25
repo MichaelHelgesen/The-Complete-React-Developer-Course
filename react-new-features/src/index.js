@@ -6,8 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 
 const NoteApp = () => {
-    const notesData = JSON.parse(localStorage.getItem("notes"));
-    const [notes, setNotes] = useState(notesData || []);
+    const [notes, setNotes] = useState([]);
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     
@@ -26,8 +25,17 @@ const NoteApp = () => {
     }
 
     useEffect(() => {
+        const notesData = JSON.parse(localStorage.getItem("notes"))
+
+        if (notesData) {
+            setNotes(notesData);
+        };
+
+    }, [])
+
+    useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes))
-    })
+    }, [notes])
 
     return (
         <div>
@@ -56,9 +64,13 @@ const AppE = (props) => {
     const [text, setText] = useState(""); 
 
     useEffect(() => {
+        console.log("This should only run once")
+    }, [])
+
+    useEffect(() => {
         console.log("useEffect ran");
         document.title = count;
-    })
+    }, [count])
     
     return (
         <div>
@@ -76,7 +88,7 @@ App.defaultProps = {
 }
 
 
-ReactDOM.render(<NoteApp count={2} />, document.getElementById('root'));
+ReactDOM.render(<NoteApp count={0} />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
